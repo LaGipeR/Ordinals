@@ -1,2 +1,6 @@
-.vscode
+/.vscode
 main
+CMakeLists.txt
+/cmake-build-debug
+/.idea
+/.git
