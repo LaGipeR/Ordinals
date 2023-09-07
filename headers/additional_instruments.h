@@ -22,8 +22,8 @@ std::string safe_buffer();
 
 void pwd(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
 
-void request_sender(const std::string &command, const Output &output);
-
 void show_buffer(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
+
+void work_with_console(std::string request, const Output &output);
 
 #endif //ORDINALS_ADDITIONAL_INSTRUMENTS_H

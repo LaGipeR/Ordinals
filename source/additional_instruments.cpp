@@ -4,6 +4,7 @@
 
 #include "additional_instruments.h"
 #include "constants.h"
+#include "bitcoin_instruments.h"
 
 #include <fstream>
 #include <iostream>
@@ -44,7 +45,7 @@ std::vector<std::string> split(const std::string &source, std::string delimiter)
 
 void close(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) {
     if (begin != end && (*begin) == "stop") {
-        request_sender("stop", Output::TO_CONSOLE);
+        request_sender_to_bitcoin_node("stop", Output::TO_CONSOLE);
     }
 
     system(("rm " + BUFFER_NAME).c_str());
@@ -57,7 +58,7 @@ void close(std::vector<std::string>::iterator begin, std::vector<std::string>::i
 std::string save_buffer() {
     std::string buffer;
 
-    std::ifstream buffer_file("test.txt");
+    std::ifstream buffer_file(BUFFER_NAME);
 
     std::string line;
     while (getline(buffer_file, line)) {
@@ -68,19 +69,12 @@ std::string save_buffer() {
     return buffer;
 }
 
-void request_sender(const std::string &command, const Output &output) {
-    std::string request = std::string("") +
-                     "curl " +
-                     "--user " + USER + ":" + PASSWORD + " " +
-                     R"(--data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": ")" + command + R"(", "params": []}' -H 'content-type: text/plain;' )" +
-                     IP + ":" + PORT + "/";
-
+void work_with_console(std::string request, const Output &output) {
     if (output == Output::TO_BUFFER || output == Output::TO_BUFFER_AND_CONSOLE) {
         request += " > " + BUFFER_NAME;
     }
 
     system(request.c_str());
-
 
     if (output == Output::TO_BUFFER || output == Output::TO_BUFFER_AND_CONSOLE) {
         std::string buffer_el = save_buffer();
@@ -93,7 +87,6 @@ void request_sender(const std::string &command, const Output &output) {
         }
     }
 }
-
 
 void show_buffer(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) {
     if (begin == end) {

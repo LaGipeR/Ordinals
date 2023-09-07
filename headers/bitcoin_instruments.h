@@ -8,14 +8,10 @@
 #include <vector>
 #include <string>
 
-void start_bitcoin_core(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
-
-void stop_bitcoin_core_with_output_option(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end, bool with_output = true);
-
-void stop_bitcoin_core(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
-
-void info_bitcoin_core(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
+#include "additional_instruments.h"
 
 void bitcoin(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
+
+void request_sender_to_bitcoin_node(const std::string &command, const Output &output);
 
 #endif //ORDINALS_BITCOIN_INSTRUMENTS_H

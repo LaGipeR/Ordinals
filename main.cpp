@@ -4,6 +4,7 @@
 #include "menu.h"
 #include "additional_instruments.h"
 #include "bitcoin_instruments.h"
+#include "ord_wallet_instruments.h"
 
 using namespace std;
 
@@ -12,8 +13,8 @@ int main() {
     Menu menu = Menu();
     menu.add_element({"exit", "close"}, close);
     menu.add_element({"bitcoin"}, bitcoin);
-    menu.add_element({"start"}, start_bitcoin_core);
     menu.add_element({"show", "buffer"}, show_buffer);
+    menu.add_element({"ord", "ordwallet"}, ord);
 
     cout << "Program successfully started\n";
 

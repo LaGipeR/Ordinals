@@ -3,19 +3,11 @@
 //
 
 #include "bitcoin_instruments.h"
-#include "constants.h"
+
 #include "additional_instruments.h"
+#include "constants.h"
 
 #include <iostream>
-
-void start_bitcoin_core(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) {
-    std::string request = BITCOIND_PATH + " -testnet " +
-                     "-rpcuser=" + USER + " " +
-                     "-rpcpassword=" + PASSWORD + " " +
-                     "-daemon";
-
-    system(request.c_str());
-}
 
 void bitcoin(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) {
     std::string command;
@@ -41,5 +33,15 @@ void bitcoin(std::vector<std::string>::iterator begin, std::vector<std::string>:
         }
     }
 
-    request_sender(command, output);
+    request_sender_to_bitcoin_node(command, output);
+}
+
+void request_sender_to_bitcoin_node(const std::string &command, const Output &output) {
+    std::string request = std::string("") +
+                          "curl " +
+                          "--user " + USER + ":" + PASSWORD + " " +
+                          R"(--data-binary '{"jsonrpc": "1.0", "id": "curltest", "method": ")" + command + R"(", "params": []}' -H 'content-type: text/plain;' )" +
+                          IP + ":" + PORT + "/";
+
+    work_with_console(request, output);
 }
