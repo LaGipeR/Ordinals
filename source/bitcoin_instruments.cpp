@@ -12,7 +12,7 @@
 void bitcoin(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) {
     std::string command;
 
-    Output output = TO_CONSOLE;
+    Output output = ToConsole;
 
     while (begin != end) {
         std::string param = *(begin++);
@@ -25,11 +25,11 @@ void bitcoin(std::vector<std::string>::iterator begin, std::vector<std::string>:
 
             command = *(begin++);
         } else if (param == "-b" || param == "--buffer") {
-            output = TO_BUFFER;
+            output = ToBuffer;
         } else if (param == "-c" || param == "--console") {
-            output = TO_CONSOLE;
+            output = ToConsole;
         } else if (param == "-bc" || param == "--buffer-and-console") {
-            output = TO_BUFFER_AND_CONSOLE;
+            output = ToBufferAndConsole;
         }
     }
 

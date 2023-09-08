@@ -9,6 +9,7 @@
 #include <string>
 
 #include "additional_instruments.h"
+#include "enums.h"
 
 void bitcoin(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
 

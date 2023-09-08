@@ -11,6 +11,10 @@
 
 std::vector<std::string> buffer_list;
 
+void unknown_command_func(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) {
+    std::cout << "This command do nothing\n";
+}
+
 std::vector<std::string> split(const std::string &source, std::string delimiter) {
     std::string cur_word;
     std::vector<std::string> result;
@@ -45,7 +49,7 @@ std::vector<std::string> split(const std::string &source, std::string delimiter)
 
 void close(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end) {
     if (begin != end && (*begin) == "stop") {
-        request_sender_to_bitcoin_node("stop", Output::TO_CONSOLE);
+        request_sender_to_bitcoin_node("stop", Output::ToConsole);
     }
 
     system(("rm " + BUFFER_NAME).c_str());
@@ -70,19 +74,19 @@ std::string save_buffer() {
 }
 
 void work_with_console(std::string request, const Output &output) {
-    if (output == Output::TO_BUFFER || output == Output::TO_BUFFER_AND_CONSOLE) {
+    if (output == Output::ToBuffer || output == Output::ToBufferAndConsole) {
         request += " > " + BUFFER_NAME;
     }
 
     system(request.c_str());
 
-    if (output == Output::TO_BUFFER || output == Output::TO_BUFFER_AND_CONSOLE) {
+    if (output == Output::ToBuffer || output == Output::ToBufferAndConsole) {
         std::string buffer_el = save_buffer();
         buffer_list.push_back(buffer_el);
 
         std::cout << "Successful saved in buffer at index " << buffer_list.size() - 1 << "\n";
 
-        if (output == Output::TO_BUFFER_AND_CONSOLE) {
+        if (output == Output::ToBufferAndConsole) {
             std::cout << "\n" << buffer_el << "\n";
         }
     }

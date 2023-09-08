@@ -7,12 +7,12 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
-enum Output {
-    TO_BUFFER,
-    TO_CONSOLE,
-    TO_BUFFER_AND_CONSOLE,
-};
+#include "bitcoin_instruments.h"
+#include "ord_wallet_instruments.h"
+
+void unknown_command_func(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
 
 std::vector<std::string> split(const std::string &source, std::string delimiter);
 

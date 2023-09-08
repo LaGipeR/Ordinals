@@ -9,21 +9,18 @@
 #include <map>
 
 #include "additional_instruments.h"
-
-enum OrdWalletCommand {
-    CREATE_NEW_WALLET,
-    GET_RECEIVE_ADDRESS,
-    CREATE_NEW_ORDINAL,
-};
-
-const std::map<OrdWalletCommand, std::string> ord_wallet_command2string = {
-        {CREATE_NEW_WALLET, "create"},
-        {GET_RECEIVE_ADDRESS, "receive"},
-        {CREATE_NEW_ORDINAL, "inscribe"}
-};
+#include "enums.h"
 
 void ord(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
 
-void request_sender_to_ord_wallet(const OrdWalletCommand &command, const Output &output);
+void send_request_to_ord_wallet(const std::string &command, const Output &output);
+
+void get_balance(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
+
+void get_address(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
+
+void send2address(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
+
+void create_ordinal(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
 
 #endif //ORDINALS_ORD_WALLET_INSTRUMENTS_H

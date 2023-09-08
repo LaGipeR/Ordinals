@@ -3,7 +3,7 @@
 
 Menu::Menu() {};
 
-void Menu::add_element(std::set<std::string> names, void (*func)(std::vector<std::string>::iterator, std::vector<std::string>::iterator)) {
+void Menu::add_element(const std::set<std::string> &names, const ProgramCommand &pc) {
     for (const auto &[list_names, _] : this->list) {
         for (const std::string &name : names) {
             if (list_names.find(name) != list_names.end()) {
@@ -12,25 +12,25 @@ void Menu::add_element(std::set<std::string> names, void (*func)(std::vector<std
         }
     }
 
-    std::pair<std::set<std::string>, void (*)(std::vector<std::string>::iterator, std::vector<std::string>::iterator)> p{names, func};
+    std::pair<std::set<std::string>, ProgramCommand> p{names, pc};
     this->list.push_back(p);
 }
 
-void Menu::find_and_execute(std::vector<std::string>::iterator name_and_components_begin, std::vector<std::string>::iterator name_and_components_end) {
+ProgramCommand Menu::find_command(std::vector<std::string>::iterator &name_and_components_begin, std::vector<std::string>::iterator name_and_components_end) {
     if (name_and_components_begin == name_and_components_end) {
         std::cout << "Empty input.\n";
-        return;
+        return ProgramCommand::UnknownCommand;
     }
 
     std::string name = *name_and_components_begin;
     name_and_components_begin++;
 
-    for (const auto &[names, func] : this->list) {
+    for (const auto &[names, pc] : this->list) {
         if (names.find(name) != names.end()) {
-            func(name_and_components_begin, name_and_components_end);
-            return;
+            return pc;
         }
     }
 
     std::cout << "Not found command with name '" << name << "'\n";
+    return ProgramCommand::UnknownCommand;
 }
