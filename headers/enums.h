@@ -6,7 +6,7 @@
 #define ORDINALS_ENUMS_H
 
 enum OrdWalletCommand {
-    CreateNewWallet,
+    CreateWallet,
     GetBalance,
     GetReceiveAddress,
     SendToAddress,
@@ -14,21 +14,22 @@ enum OrdWalletCommand {
 };
 
 enum Output {
-    ToBuffer,
     ToConsole,
-    ToBufferAndConsole,
+    Silent,
+    ToString,
 };
 
 enum ProgramCommand {
     UnknownCommand,
     CloseProgram,
-    RequestToBitcoinNode,
-    RequestToOrdWallet,
     ShowBuffer,
     Balance,
     Address,
     Send,
-    Create,
+    CreateOrdinal,
+    UseWallet,
+    CreateOrdWallet,
+    Find,
 };
 
 #endif //ORDINALS_ENUMS_H

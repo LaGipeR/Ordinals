@@ -1,11 +1,12 @@
-#include <menu.h>
+#include "menu.h"
+
 #include <iostream>
 
 Menu::Menu() {};
 
 void Menu::add_element(const std::set<std::string> &names, const ProgramCommand &pc) {
-    for (const auto &[list_names, _] : this->list) {
-        for (const std::string &name : names) {
+    for (const auto &[list_names, _]: this->list) {
+        for (const std::string &name: names) {
             if (list_names.find(name) != list_names.end()) {
                 throw std::invalid_argument("Exist command with name '" + name + "'");
             }
@@ -16,7 +17,8 @@ void Menu::add_element(const std::set<std::string> &names, const ProgramCommand 
     this->list.push_back(p);
 }
 
-ProgramCommand Menu::find_command(std::vector<std::string>::iterator &name_and_components_begin, std::vector<std::string>::iterator name_and_components_end) {
+ProgramCommand Menu::find_command(std::vector<std::string>::iterator &name_and_components_begin,
+                                  std::vector<std::string>::iterator name_and_components_end) {
     if (name_and_components_begin == name_and_components_end) {
         std::cout << "Empty input.\n";
         return ProgramCommand::UnknownCommand;
@@ -25,7 +27,7 @@ ProgramCommand Menu::find_command(std::vector<std::string>::iterator &name_and_c
     std::string name = *name_and_components_begin;
     name_and_components_begin++;
 
-    for (const auto &[names, pc] : this->list) {
+    for (const auto &[names, pc]: this->list) {
         if (names.find(name) != names.end()) {
             return pc;
         }

@@ -8,11 +8,20 @@
 #include <vector>
 #include <string>
 
-#include "additional_instruments.h"
-#include "enums.h"
+struct Location {
+    std::string tx_ID;
+    size_t vout;
+    long long pos_in_vout;
+};
 
-void bitcoin(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
+void find(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
 
-void request_sender_to_bitcoin_node(const std::string &command, const Output &output);
+void find_update();
+
+void read_ordinals_data();
+
+void write_ordinals_date();
+
+void add_ordinal(const std::string& ordinal_ID, Location ordinal_location);
 
 #endif //ORDINALS_BITCOIN_INSTRUMENTS_H

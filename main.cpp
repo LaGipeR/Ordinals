@@ -1,35 +1,37 @@
-#include <iostream>
-#include <vector>
-
-#include "menu.h"
 #include "additional_instruments.h"
 #include "constants.h"
-#include "enums.h"
+
+#include "bitcoinapi/bitcoinapi.h"
+
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
 int main() {
-    string command;
-    Menu menu = Menu();
-    menu.add_element({"exit", "close"}, ProgramCommand::CloseProgram);
-    menu.add_element({"bitcoin"}, ProgramCommand::RequestToBitcoinNode);
-    menu.add_element({"show", "buffer"}, ProgramCommand::ShowBuffer);
-    menu.add_element({"ord", "ordwallet"}, ProgramCommand::RequestToOrdWallet);
-    menu.add_element({"balance", "bal"}, ProgramCommand::Balance);
-    menu.add_element({"address"}, ProgramCommand::Address);
-    menu.add_element({"send"}, ProgramCommand::Send);
-    menu.add_element({"create"}, ProgramCommand::Create);
+    Menu menu;
+    init(menu);
 
-    cout << "Program successfully started\n";
+    string command;
 
     while (true) {
-        getline(cin, command);
+        try {
+            getline(cin, command);
 
-        vector<string> components = split(command, " ");
+            vector<string> components = split(command, " ");
 
-        auto begin = components.begin();
-        auto end = components.end();
+            auto begin = components.begin();
+            auto end = components.end();
 
-        program_command2func.at(menu.find_command(begin, end))(begin, end);
+            program_command2func.at(menu.find_command(begin, end))(begin, end);
+        } catch (BitcoinException e) {
+            cout << "Something goes wrong in bitcoin node. Try again later\n";
+            cout << "Message: " << e.getMessage() << "\n";
+        } catch (Json::RuntimeError e) {
+            cout << "Something goes wrong in Json parse. Try again later\n";
+//            cout << "Message: " << e.what() << "\n";
+        } catch (logic_error e) {
+            cout << e.what() << "\n";
+        }
     }
 }
