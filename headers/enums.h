@@ -13,16 +13,8 @@ enum OrdWalletCommand {
     CreateNewOrdinal,
 };
 
-enum Output {
-    ToConsole,
-    Silent,
-    ToString,
-};
-
 enum ProgramCommand {
-    UnknownCommand,
     CloseProgram,
-    ShowBuffer,
     Balance,
     Address,
     Send,
@@ -30,6 +22,7 @@ enum ProgramCommand {
     UseWallet,
     CreateOrdWallet,
     Find,
+    Help,
 };
 
 #endif //ORDINALS_ENUMS_H

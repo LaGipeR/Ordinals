@@ -5,23 +5,23 @@
 #ifndef ORDINALS_ADDITIONAL_INSTRUMENTS_H
 #define ORDINALS_ADDITIONAL_INSTRUMENTS_H
 
-#include "bitcoin_instruments.h"
-#include "ord_wallet_instruments.h"
 #include "menu.h"
+
+#include "bitcoinapi/types.h"
 
 #include <string>
 #include <vector>
 
-void unknown_command_func(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
-
-std::vector<std::string> split(const std::string &source, std::string delimiter);
+std::vector<std::string> split(const std::string &source, const std::string &delimiter);
 
 void close(std::vector<std::string>::iterator begin, std::vector<std::string>::iterator end);
 
-void work_with_console(std::string request, const Output &output);
+Menu init();
 
-void update();
+std::pair<std::string, std::string> work_with_console(std::string request);
 
-void init(Menu &main_menu);
+std::string file2string(const std::string &filename);
+
+Json::Value string2value(const std::string &source);
 
 #endif //ORDINALS_ADDITIONAL_INSTRUMENTS_H
