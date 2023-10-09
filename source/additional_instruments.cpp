@@ -32,6 +32,8 @@ Menu init() {
     main_menu.add_element({"init", "init wallet", "wallet init"},
                           ProgramCommand::CreateOrdWallet, "create wallet");
     main_menu.add_element({"find"}, ProgramCommand::Find, "find ordinals, that was created before");
+    main_menu.add_element({"ordinals", "my ordinals"}, ProgramCommand::Ordinals,
+                          "show ordinal IDs, that was created earlier");
 
     return main_menu;
 }

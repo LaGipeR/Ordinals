@@ -4,8 +4,6 @@
 
 #include "bitcoin_instruments.h"
 
-//#include "bitcoinapi/bitcoinapi.h"
-//#include "../headers/constants.h"
 #include "additional_instruments.h"
 
 #include <iostream>
@@ -241,4 +239,10 @@ blockinfo_t BitcoinNodeRequestManager::get_block(int block_height) {
 
 int BitcoinNodeRequestManager::last_block_height() {
     return this->bitcoin_node.getblockcount();
+}
+
+void my_ordinals(std::vector<std::string>::iterator _begin, std::vector<std::string>::iterator _end) {
+    for (const auto &[ordinal_ID, _ordinal_loc]: ordinals_location) {
+        std::cout << ordinal_ID << "\n";
+    }
 }

@@ -22,6 +22,7 @@ int main() {
             std::cout << "Message: " << e.getMessage() << "\n";
         } catch (Json::RuntimeError &e) {
             std::cout << "Something goes wrong in Json parse. Try again later\n";
+            std::cout << "Message: " << e.what() << "\n";
         } catch (std::logic_error &e) {
             std::cout << "ERROR:\n" << e.what() << "\n";
         } catch (ord_wallet_error &e) {

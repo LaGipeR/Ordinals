@@ -63,4 +63,6 @@ void write_ordinals_date();
 
 void add_ordinal(const std::string &ordinal_ID, Location ordinal_location);
 
+void my_ordinals(std::vector<std::string>::iterator _begin, std::vector<std::string>::iterator _end);
+
 #endif //ORDINALS_BITCOIN_INSTRUMENTS_H

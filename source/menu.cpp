@@ -3,7 +3,6 @@
 #include "additional_instruments.h"
 #include "ord_wallet_instruments.h"
 #include "bitcoin_instruments.h"
-//#include "../headers/constants.h"
 
 #include <iostream>
 #include <climits>
@@ -20,6 +19,7 @@ const std::map<ProgramCommand, void (*)(std::vector<std::string>::iterator,
         {UseWallet,       use_wallet},
         {CreateOrdWallet, create_wallet},
         {Find,            find},
+        {Ordinals,        my_ordinals}
 };
 
 Menu::Menu(int change_cost, int delete_cost, int insert_cost, int error_limit) : change_cost(change_cost),

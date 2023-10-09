@@ -23,6 +23,7 @@ enum ProgramCommand {
     CreateOrdWallet,
     Find,
     Help,
+    Ordinals
 };
 
 #endif //ORDINALS_ENUMS_H
