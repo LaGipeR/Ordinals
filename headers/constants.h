@@ -11,8 +11,8 @@ const std::string PASSWORD = "1";
 const std::string TMP_FILENAME = "./data/tmp";
 const std::string TMP_ERROR_FILENAME = "./data/tmp_err";
 
-const std::string ORD_WALLET_PATH = R"(/home/lagiper/save\ \(ubuntu\)/Dlabs/bitcoin-25.0/Ordinals/ord/target/release/ord)";
-const std::string DATABASE_PATH = R"(/home/lagiper/save\ \(ubuntu\)/Dlabs/bitcoin-25.0/Ordinals/data/)";
+const std::string ORD_WALLET_PATH = R"(./ord/target/release/ord)";
+const std::string DATABASE_PATH = R"(./data/)";
 const std::string ORDINALS_DATA_FILENAME = "ordinals_data.txt";
 
 const long long SAT_IN_BIT = 100'000'000;
