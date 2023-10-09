@@ -18,6 +18,7 @@ Menu init() {
     update_index();
 
     read_ordinals_data();
+    find_update();
 
     Menu main_menu(MENU_STRING_DIF_DEFAULT_CHANGE_COST, MENU_STRING_DIF_DEFAULT_DELETE_COST,
                    MENU_STRING_DIF_DEFAULT_INSERT_COST, MENU_STRING_DIF_DEFAULT_ERROR_LIMIT);

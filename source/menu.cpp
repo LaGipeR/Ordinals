@@ -28,7 +28,7 @@ Menu::Menu(int change_cost, int delete_cost, int insert_cost, int error_limit) :
                                                                                  error_limit(error_limit) {
     this->add_element({"help"}, ProgramCommand::Help, "print this message");
     this->help_token = ProgramCommand::Help;
-};
+}
 
 void
 Menu::add_element(const std::set<std::string> &names, const ProgramCommand &token, const std::string &description) {
@@ -176,7 +176,7 @@ int Menu::calc_string_dif(const std::string &possible_command_name, const std::s
     return dp[possible_command_name.size()][command_name.size()];
 }
 
-bool StringDifInfo::better_than(const StringDifInfo &other) {
+bool StringDifInfo::better_than(const StringDifInfo &other) const {
     return this->string_dif_value < other.string_dif_value ||
            (this->string_dif_value == other.string_dif_value && this->command_name_end > other.command_name_end);
 }

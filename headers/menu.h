@@ -7,12 +7,13 @@
 #include <set>
 #include <utility>
 #include <string>
+#include <climits>
 
 struct StringDifInfo {
     int string_dif_value;
     std::vector<std::string>::iterator command_name_end;
 
-    bool better_than(const StringDifInfo &other);
+    bool better_than(const StringDifInfo &other) const;
 };
 
 struct CommandInfo {
